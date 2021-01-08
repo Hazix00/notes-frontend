@@ -1,4 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import '../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '../node_modules/@fortawesome/fontawesome-free/scss/brands.scss';
+@import '../node_modules/@fortawesome/fontawesome-free/scss/solid.scss';
+.user {
+  @extend %fa-icon;
+  @extend .fas;
+
+  &:before {
+    content: fa-content($fa-var-user);
+  }
+}
+
+.twitter {
+  @extend %fa-icon;
+  @extend .fab;
+
+  &:before {
+    content: fa-content($fa-var-twitter);
+  }
+}
 @import './main-styles.scss';
 @import '../node_modules/bulma/bulma.sass';
