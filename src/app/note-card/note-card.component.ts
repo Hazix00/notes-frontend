@@ -1,5 +1,5 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+
 import { NotesService } from './../shared/notes.service';
 
 
@@ -12,6 +12,7 @@ export class NoteCardComponent implements OnInit, AfterViewInit {
   @Input() title!: string;
   @Input() body!: string;
   @Input() id!: number;
+  @Input() link!: number;
 
 
   @ViewChild('truncator')
@@ -23,8 +24,7 @@ export class NoteCardComponent implements OnInit, AfterViewInit {
 
   constructor(
     private cdRef:ChangeDetectorRef,
-    private notesService: NotesService,
-    private route: ActivatedRoute,
+    private notesService: NotesService
 
     ) { }
 

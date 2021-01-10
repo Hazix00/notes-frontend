@@ -13,8 +13,8 @@
   <div class="notes-list">
     <app-note-card
     *ngFor="let note of notes; let i = index"
-    [@noteAdding]
-    [routerLink]="[i]"
+    @myInsertRemoveTrigger
+    [link]="i"
     [title]="note.title" [body]="note.body" [id]="i"
      >
     </app-note-card>

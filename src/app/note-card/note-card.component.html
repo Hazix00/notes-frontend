@@ -1,14 +1,17 @@
 <div #container class="note-card-container">
-  <div class="note-card-content">
 
-    <h1 class="note-card-title">{{title}}</h1>
+  <a [routerLink]="[link]">
+    <div class="note-card-content">
 
-    <div #bodyText class="note-card-body">
-      <p>{{body}}</p>
-      <div *ngIf="showTruncator" #truncator class="fade-out-truncation"></div>
+      <h1 class="note-card-title">{{title}}</h1>
+
+      <div #bodyText class="note-card-body">
+        <p>{{body}}</p>
+        <div *ngIf="showTruncator" #truncator class="fade-out-truncation"></div>
+      </div>
+
     </div>
-
-  </div>
+  </a>
 
   <div class="x-button" (click)="onClick()"></div>
 </div>

@@ -11,7 +11,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 })
 export class NoteDetailsComponent implements OnInit {
 
-  note! : Note;
+  note!: Note;
   noteId!: number;
   editMode = false;
 
@@ -23,7 +23,7 @@ export class NoteDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.note = new Note();
-    this.route.params.subscribe( (params : Params) => {
+    this.route.params.subscribe( (params: Params) => {
       if (params.id) {
         this.note = this.notesService.getById(params.id);
         this.noteId = params.id;
@@ -35,13 +35,13 @@ export class NoteDetailsComponent implements OnInit {
     });
   }
 
-  onSubmit(form : NgForm) {
+  onSubmit(form: NgForm): void {
     if (this.editMode) {
       this.notesService.update(this.noteId, form.value);
     }
     else {
       this.notesService.add(form.value);
     }
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('');
   }
 }

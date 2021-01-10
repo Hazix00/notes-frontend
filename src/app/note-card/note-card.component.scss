@@ -1,5 +1,9 @@
 @import '../../main-styles.scss';
 
+:host {
+  display: block;
+}
+
 .note-card-container {
   margin-bottom: 25px;
   position: relative;
