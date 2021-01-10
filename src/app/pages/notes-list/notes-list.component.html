@@ -11,8 +11,13 @@
   </div>
 
   <div class="notes-list">
-    <app-note-card title="About" body="Lorem ipsum" ></app-note-card>
-    <app-note-card title="Hi" body="Lorem ipsum kkkdkl2985393436565365s   lksdglkdfd dlkgdf lklkdfgdl  lkjdfgd llkdfg"></app-note-card>
-    <app-note-card title="World" body="Lorem ipsum kkkdkl2985393436565365s lksdglkdfd dlkgdf lklkdfgdl  lkjdfgd llkdfg glkdfd dlkgdf lklkdfgdl  lkjdfgd llkdfgglkdfd dlkgdf lklkdfgdl  lkjdfgd llkdfgglkdfd dlkgdf lklkdfgdl  lkjdfgd llkdfgglkdfd dlkgdf lklkdfgdl  lkjdfgd llkdfg"></app-note-card>
+    <app-note-card
+    *ngFor="let note of notes; let i = index"
+    [@noteAdding]
+    [routerLink]="[i]"
+    [title]="note.title" [body]="note.body" [id]="i"
+     >
+    </app-note-card>
+    <button class="button floating-add-button is-primary" routerLink="new">+ Add</button>
   </div>
 </div>

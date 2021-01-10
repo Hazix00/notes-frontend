@@ -1,0 +1,15 @@
+@import '../../../main-styles.scss';
+
+.form-container {
+  max-width: 500px;
+  margin: 50px auto;
+
+}
+
+.input.ng-invalid.ng-touched {
+  border: 2px solid #f34343;
+  &:focus {
+    background-color: $light-red;
+    box-shadow: 0px 0px 0px 2px rgba(#f34343,0.2);
+  }
+}
