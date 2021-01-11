@@ -1,8 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import '../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss';
-@import '../node_modules/@fortawesome/fontawesome-free/scss/brands.scss';
-@import '../node_modules/@fortawesome/fontawesome-free/scss/solid.scss';
+@import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '@fortawesome/fontawesome-free/scss/brands.scss';
+@import '@fortawesome/fontawesome-free/scss/solid.scss';
+// fontawesome
+
 .user {
   @extend %fa-icon;
   @extend .fas;
@@ -21,4 +23,5 @@
   }
 }
 @import './main-styles.scss';
-@import '../node_modules/bulma/bulma.sass';
+@import 'bulma/bulma.sass';
+

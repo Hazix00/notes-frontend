@@ -16,7 +16,7 @@ export class NoteDetailsComponent implements OnInit {
   editMode = false;
 
   constructor(
-    private notesService : NotesService,
+    private notesService: NotesService,
     private router: Router,
     private route: ActivatedRoute
      ) { }
