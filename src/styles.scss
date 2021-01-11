@@ -1,8 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
-@import '@fortawesome/fontawesome-free/scss/brands.scss';
-@import '@fortawesome/fontawesome-free/scss/solid.scss';
+@import './scss/main-styles.scss';
+@import './scss/bulma.sass';
+@import './scss/fontawesome/fontawesome.scss';
+@import './scss/fontawesome/brands.scss';
+@import './scss/fontawesome/solid.scss';
 // fontawesome
 
 .user {
@@ -22,6 +24,5 @@
     content: fa-content($fa-var-twitter);
   }
 }
-@import './main-styles.scss';
-@import 'bulma/bulma.sass';
+
 
