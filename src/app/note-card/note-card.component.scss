@@ -1,4 +1,4 @@
-@import '../../main-styles.scss';
+@import '../../scss/main-styles.scss';
 
 :host {
   display: block;
@@ -38,7 +38,7 @@
     position: relative;
     max-height: 80px;
     overflow: hidden;
-    color: black;
+    color: #0e0d0d;
 
     .fade-out-truncation {
       pointer-events: none;
