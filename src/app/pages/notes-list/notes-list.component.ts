@@ -1,7 +1,9 @@
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
+import { ActivationEnd, Router } from '@angular/router';
+
 import { NotesService } from './../../shared/notes.service';
-import { Component, OnInit } from '@angular/core';
 import { Note } from 'src/app/shared/note.model';
-import { animate, keyframes, query, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-notes-list',
@@ -53,22 +55,51 @@ import { animate, keyframes, query, style, transition, trigger } from '@angular/
           })
         )
       ])
-      // transition(':enter', [
-      //   animate('200ms', style({ opacity: 1 }))
-      // ]),
-      // transition(':leave', [
-      //   animate('200ms', style({ opacity: 0 }))
-      // ])
-    ])
+    ]),
+    trigger('listAnimate', [
+      transition('* => *', [
+        query(':enter', [
+          style({opacity: 0, height: 0}),
+          stagger(100, [
+            animate('0.2s ease')
+          ])
+        ],
+        { optional: true },
+        )
+      ])
+    ]
+    )
   ]
 })
 export class NotesListComponent implements OnInit {
 
   notes: Note[] = new Array<Note>();
-  constructor(private notesService: NotesService) { }
+  constructor(
+    private notesService: NotesService,
+    private router: Router,
+    private cdRef: ChangeDetectorRef
+  ) { }
 
   ngOnInit(): void {
+    this.router.events.subscribe(ev => {
+      if (ev instanceof ActivationEnd &&
+        Object.is(ev?.snapshot?.component, NotesListComponent)) {
+          this.notes = this.notesService.get();
+          console.log('Back');
+      }
+    });
     this.notes = this.notesService.get();
+    console.log('init list');
   }
 
+  trackElement(index: number, element: any): number | null {
+    return element ? element.id : null;
+  }
+
+  filter(event: any): void {
+    // tslint:disable-next-line: no-shadowed-variable
+    const query: string = (event.target as HTMLInputElement).value;
+    this.notes = this.notesService.filterNotes(query);
+    this.cdRef.detectChanges();
+  }
 }

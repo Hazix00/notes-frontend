@@ -2,7 +2,7 @@
   <div class="search-bar-container">
     <div class="field">
       <p class="control has-icons-left">
-        <input class="input" type="text" placeholder="Filter">
+        <input class="input" type="text" placeholder="Filter" (input)="filter($event)">
         <span class="icon is-small is-left">
           <i class="fas fa-search"></i>
         </span>
@@ -10,14 +10,14 @@
     </div>
   </div>
 
-  <div class="notes-list">
+  <div class="notes-list" @listAnimate
+  >
     <app-note-card
-    *ngFor="let note of notes; let i = index"
+    *ngFor="let noteItem of notes; trackBy: trackElement"
     @myInsertRemoveTrigger
-    [link]="i"
-    [title]="note.title" [body]="note.body" [id]="i"
+    [note]="noteItem"
      >
     </app-note-card>
-    <button class="button floating-add-button is-primary" routerLink="new">+ Add</button>
+    <button class="button floating-add-button is-primary" [appCustomRouterLink]="'new'">+ Add</button>
   </div>
 </div>

@@ -1,8 +1,10 @@
-import { Note } from './../../shared/note.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NotesService } from 'src/app/shared/notes.service';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
+
+import { Note } from './../../shared/note.model';
+import { CustomRouterLinkDirective } from 'src/app/Directives/custom-router-link.directive';
 
 @Component({
   selector: 'app-note-details',
@@ -11,13 +13,12 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 })
 export class NoteDetailsComponent implements OnInit {
 
-  note!: Note;
-  noteId!: number;
+  note: Note | undefined;
   editMode = false;
+  @ViewChild(CustomRouterLinkDirective) vc!: CustomRouterLinkDirective;
 
   constructor(
     private notesService: NotesService,
-    private router: Router,
     private route: ActivatedRoute
      ) { }
 
@@ -26,7 +27,6 @@ export class NoteDetailsComponent implements OnInit {
     this.route.params.subscribe( (params: Params) => {
       if (params.id) {
         this.note = this.notesService.getById(params.id);
-        this.noteId = params.id;
         this.editMode = true;
       }
       else {
@@ -37,11 +37,12 @@ export class NoteDetailsComponent implements OnInit {
 
   onSubmit(form: NgForm): void {
     if (this.editMode) {
-      this.notesService.update(this.noteId, form.value);
+      this.notesService.update(this.note!.id, form.value);
     }
     else {
       this.notesService.add(form.value);
     }
-    this.router.navigateByUrl('');
+    this.vc.customRouterLink = 'list';
+    this.vc.activate();
   }
 }

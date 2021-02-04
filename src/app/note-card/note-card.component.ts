@@ -1,6 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 
 import { NotesService } from './../shared/notes.service';
+import { Note } from '../shared/note.model';
 
 
 @Component({
@@ -9,11 +10,8 @@ import { NotesService } from './../shared/notes.service';
   styleUrls: ['./note-card.component.scss']
 })
 export class NoteCardComponent implements OnInit, AfterViewInit {
-  @Input() title!: string;
-  @Input() body!: string;
-  @Input() id!: number;
-  @Input() link!: number;
-
+  @Input() note!: Note;
+  id!: number;
 
   @ViewChild('truncator')
   truncator!: ElementRef<HTMLElement>;
@@ -36,10 +34,10 @@ export class NoteCardComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-
+    this.id = this.note.id;
   }
 
   onClick(): void {
-    this.notesService.delete(this.id);
+    this.notesService.delete(this.note);
   }
 }
